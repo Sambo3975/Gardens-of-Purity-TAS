@@ -25,6 +25,12 @@ local runs = {
 		"ln",{"x","<=",-199136},
 		"jlun",{"md"},
 	},
+	{ -- Akropolis -> Asphodel
+		global = true,
+		"",{"nfs"},
+		"ln",{{"ntg"},{"tg"}},
+		"jlun",{math.huge},
+	}
 }
 
 GameData.speedrunProgress = GameData.speedrunProgress + 1

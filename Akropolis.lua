@@ -1,7 +1,7 @@
 local utils = require("__speedrun/utils")
 local d = utils.dialog
 local tp = utils.tp
-local skipIdx = 3
+local skipIdx = 0
 
 local function skip(idx)
 	return function()
@@ -15,6 +15,7 @@ return {
 		{"when",{skip(1)},{{tp(-159584,-160128)}}}, -- end sect 2
 		{"when",{skip(2)},{{tp(-139312,-140320)}}}, -- end sect 3
 		{"when",{skip(3)},{{tp(-117120,-120160)}}}, -- end sect 4
+		{"when",{skip(4)},{{tp( -96896,-100352)}}}, -- end sect 5
 		-- up the shaft
 		"jln",{{1},{"md"}},
 		"ln",{1},
@@ -176,7 +177,10 @@ return {
 		"jrun",{"fs"},
 	},
 	{ -- section 5
-		"",{"nfs"},
+		-- shortcut to section 6
+		{"when",{skip(4)},{"u",{"fs"}}},
+	
+		"",{{"nfs"},{1}},
 		"jrn",{11},
 		"rn",{"x",">=",-99264},
 		"jln",{9},
@@ -263,5 +267,47 @@ return {
 		"jrn",{{"md"}},
 		"ln",{1},
 		"jrun",{{1},{"md"}},
-	}
+	},
+	{ -- section 6
+		"",{{"nfs"},{1}},
+		{"dotimes",3,{
+			"jrn",{{1},"md"},
+			"rn",{1},
+		}},
+		"ln",{27},
+		"rn",{"tg"},
+		"rn",{{"x",">=",-79680},{2}},
+		"jrn",{{1},{"md"}},
+		"rn",{1},
+		"jrn",{16},
+		"jln",{"md"},
+		"rn",{{"x",">=",-79392},{1}},
+		{"dotimes",4,{
+			"jrn",{{1},{"md"}},
+			"rn",{4},
+		}},
+		"jln",{8},
+		"j",{"md"},
+		"rn",{1},
+		"jrn",{{1},{"md"}},
+		"rn",{"y",">=",-80352},
+		"ln",{7},
+		"rn",{{"x",">=",-79136},{5}},
+		"jrn",{{1},{"md"}},
+		"rn",{1},
+		"j",{{1},{"md"}},
+		"rn",{1},
+		"jrn",{{1},{"md"}},
+		"rn",{3},
+		"",{"tg"},
+		"j",{{1},{"md"}},
+		"",{1},
+		"jrn",{{1},{"md"}},
+		"rn",{29},
+		"ln",{21},
+		"rn",{{"x",">=",-78592},{2}},
+		"jrn",{{1},{"md"}},
+		"rn",{1},
+		"jrn",{math.huge},
+	},
 }
